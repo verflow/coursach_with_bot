@@ -331,8 +331,14 @@ double evaluate(table_s T) {
 
 	double sum = (double)(pip(T, player) - pip(T, enemy));
 
-	//sum += выброс[player]*8;
-	//sum -= выброс[enemy]*8;
+	if (player == WHITE) {
+		sum += T.white_dropped * 9;
+		sum -= T.black_dropped * 9;
+	}
+	else {
+		sum -= T.white_dropped * 9;
+		sum += T.black_dropped * 9;
+	}
 
 	int lower_p = (player == 1) ? 18 : 6;
 	int higher_p = (player == 1) ? 23 : 11;
@@ -363,7 +369,7 @@ double evaluate(table_s T) {
 
 	return sum;
 }
-double expect(table_s* T, int player, int deep);
+double expect(table_s T, int player, int deep);
 
 int best_for_roll(table_s T, int player, int dice1, int dice2, int deep) {
 	T.dice[0] = dice1; T.dice[1] = dice2;
@@ -409,7 +415,7 @@ int bot_choose() {
 		}
 	}
 	free(ArrTables);
-	return best_i;
+	return best_i+1;
 }
 
 int tupoy_bot() {
@@ -432,8 +438,15 @@ int main() {
 		printf("Выпало: %d %d\n", table.dice[0], table.dice[1]);
 		move_cnt = table.dice[0] == table.dice[1] ? 4 : 2;
 		for (int i = 0; i < move_cnt; i++) {
-			int moves_count = all_moves(&table);
-			print_moves(moves_count);
+			if (table.cur_player == BLACK) {
+				make_move(&table, bot_choose());
+
+			}
+			else {
+				int moves_count = all_moves(&table);
+
+				print_moves(moves_count);
+			}
 		}
 
 		if (table.cur_player == WHITE)
