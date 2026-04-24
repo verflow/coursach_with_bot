@@ -1,0 +1,6 @@
+﻿  main.c
+C:\Users\User\source\repos\coursach_with_bot\coursach_with_bot\main.c(458,62): warning C4101: sum: неиспользованная локальная переменная
+C:\Users\User\source\repos\coursach_with_bot\coursach_with_bot\main.c(502,8): warning C4244: функция: преобразование "time_t" в "unsigned int", возможна потеря данных
+  coursach_with_bot.vcxproj -> C:\Users\User\source\repos\coursach_with_bot\x64\Debug\coursach_with_bot.exe
+  "pwsh.exe" не является внутренней или внешней
+  командой, исполняемой программой или пакетным файлом.
